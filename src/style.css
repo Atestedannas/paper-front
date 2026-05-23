@@ -1,0 +1,34 @@
+/* Reset default styles to avoid conflicts with modern-theme.css */
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove default body styling that causes centering issues */
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  display: block;
+}
+
+/* Reset app container to full width */
+#app {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+/* Remove default button styling */
+button {
+  font-family: inherit;
+}
+
+/* Remove default card styling */
+.card {
+  padding: 0;
+}

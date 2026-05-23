@@ -1,0 +1,41 @@
+export const MENU_PERMISSION_MAP = {
+  admin: ['system:stats:view'],
+  'admin-users': ['user:list'],
+  'admin-papers': ['paper:list'],
+  'admin-paper-format': ['paper:format:manage'],
+  'admin-orders': ['order:list'],
+  'admin-settings-system': ['system:config:read', 'system:config:update'],
+  'admin-settings-billing': ['billing:manage'],
+  'admin-roles': ['rbac:role:manage'],
+  'admin-permissions': ['rbac:permission:manage'],
+  'admin-universities': ['university:list', 'university:manage'],
+  'admin-templates': ['template:list', 'template:manage'],
+  'admin-stats': ['system:stats:view'],
+  'admin-settings-logs': ['system:logs:view'],
+  'admin-logs': ['system:logs:view'],
+  'admin-settings-payment': ['payment:manage'],
+  'admin-payment': ['payment:manage'],
+  'admin-support-contact': ['support:manage']
+}
+
+export const ADMIN_ROUTE_PERMISSION_MAP = {
+  'admin-dashboard': ['system:stats:view'],
+  'admin-users': ['user:list'],
+  'admin-papers': ['paper:list'],
+  'admin-paper-format': ['paper:format:manage'],
+  'admin-orders': ['order:list'],
+  'admin-stats': ['system:stats:view'],
+  'admin-settings-system': ['system:config:read', 'system:config:update'],
+  'admin-settings-logs': ['system:logs:view'],
+  'admin-logs': ['system:logs:view'],
+  'admin-settings-payment': ['payment:manage'],
+  'admin-payment': ['payment:manage'],
+  'admin-settings-billing': ['billing:manage'],
+  'admin-support-contact': ['support:manage'],
+  'admin-roles': ['rbac:role:manage'],
+  'admin-permissions': ['rbac:permission:manage'],
+  'admin-permission-packages': ['rbac:permission:manage'],
+  'admin-universities': ['university:list', 'university:manage'],
+  'admin-templates': ['template:list', 'template:manage'],
+  'admin-rbac': ['rbac:role:manage', 'rbac:permission:manage']
+}
