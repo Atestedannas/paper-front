@@ -32,7 +32,14 @@ jobs:
         uses: easingthemes/ssh-deploy@v4
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          ARGS: -rlgoDzvc -i --delete
           REMOTE_HOST: 119.91.157.252
           REMOTE_USER: root
           TARGET: /opt/paper/
           SOURCE: dist/
+          SCRIPT_AFTER: |
+            echo "Deployed index asset paths:"
+            grep -oE '(src|href)="[^"]+"' /opt/paper/index.html || true
+            test -f /opt/paper/index.html
+            test -d /opt/paper/assets
+          SCRIPT_AFTER_REQUIRED: true
