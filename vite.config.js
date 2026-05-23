@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
 
   return {
-    base: env.VITE_BASE_PATH || '/paper-front/',
+    base: process.env.VITE_BASE_PATH || env.VITE_BASE_PATH || '/',
     plugins: [vue()],
     resolve: {
       alias: {
