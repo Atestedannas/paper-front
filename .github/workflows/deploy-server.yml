@@ -1,0 +1,31 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Install pnpm & build
+      run: |
+        npm install -g pnpm
+        pnpm install
+        pnpm run build
+
+    - name: Deploy via SSH
+      uses: easingthemes/ssh-deploy@v4
+      with:
+        SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}   # 从 Secrets 读取
+        REMOTE_HOST: 119.91.157.252
+        REMOTE_USER: root
+        TARGET: /opt/paper/                               # 修正路径
+        SOURCE: dist/

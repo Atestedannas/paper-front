@@ -4,6 +4,7 @@ import { resolve } from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/paper-front/',   // ✅ 与仓库名保持一致
   plugins: [vue()],
   resolve: {
     alias: {
