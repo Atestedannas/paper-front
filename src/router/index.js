@@ -165,7 +165,7 @@ const adminChildren = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory('/paper-front/'),
   routes: [
     {
       path: '/',
