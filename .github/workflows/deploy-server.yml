@@ -28,6 +28,11 @@ jobs:
         env:
           VITE_BASE_PATH: /
 
+      - name: Check SSH secret
+        run: test -n "$SERVER_SSH_KEY"
+        env:
+          SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+
       - name: Deploy via SSH
         uses: easingthemes/ssh-deploy@v4
         with:
@@ -42,4 +47,3 @@ jobs:
             grep -oE '(src|href)="[^"]+"' /opt/paper/index.html || true
             test -f /opt/paper/index.html
             test -d /opt/paper/assets
-          SCRIPT_AFTER_REQUIRED: true
