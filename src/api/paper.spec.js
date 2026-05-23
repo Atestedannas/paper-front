@@ -11,7 +11,7 @@ describe('paper api uploads', () => {
     vi.clearAllMocks()
   })
 
-  it('uploads papers through the existing v1 endpoint', async () => {
+  it('uploads papers through the v2 workflow endpoint', async () => {
     const response = { data: { id: 'paper-1' } }
     const formData = new FormData()
     const onUploadProgress = vi.fn()
@@ -20,7 +20,7 @@ describe('paper api uploads', () => {
     await expect(uploadPaper(formData, onUploadProgress)).resolves.toBe(response)
 
     expect(request).toHaveBeenCalledWith({
-      url: '/api/v1/papers/upload',
+      url: '/api/v2/papers',
       method: 'POST',
       data: formData,
       timeout: 300000,

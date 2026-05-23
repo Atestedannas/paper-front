@@ -1,31 +1,38 @@
 name: Deploy to Server
 
 on:
-  push:
-    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Setup Node
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.32.1
 
-    - name: Install pnpm & build
-      run: |
-        npm install -g pnpm
-        pnpm install
-        pnpm run build
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
 
-    - name: Deploy via SSH
-      uses: easingthemes/ssh-deploy@v4
-      with:
-        SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}   # 从 Secrets 读取
-        REMOTE_HOST: 119.91.157.252
-        REMOTE_USER: root
-        TARGET: /opt/paper/                               # 修正路径
-        SOURCE: dist/
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Deploy via SSH
+        uses: easingthemes/ssh-deploy@v4
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          REMOTE_HOST: 119.91.157.252
+          REMOTE_USER: root
+          TARGET: /opt/paper/
+          SOURCE: dist/
