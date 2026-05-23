@@ -26,8 +26,6 @@ jobs:
 
       - name: Build
         run: pnpm run build
-        env:
-          VITE_BASE_PATH: /
 
       - name: Deploy via SSH
         uses: easingthemes/ssh-deploy@v4
@@ -35,5 +33,5 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           REMOTE_HOST: 119.91.157.252
           REMOTE_USER: root
-          TARGET: /opt/paper/
+          TARGET: /opt/paper/paper-front/
           SOURCE: dist/
