@@ -29,7 +29,11 @@ jobs:
           VITE_BASE_PATH: /
 
       - name: Check SSH secret
-        run: test -n "$SERVER_SSH_KEY"
+        run: |
+          if [ -z "$SERVER_SSH_KEY" ]; then
+            echo "SERVER_SSH_KEY is empty. Add it as a repository Actions secret before deploying."
+            exit 1
+          fi
         env:
           SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
 
