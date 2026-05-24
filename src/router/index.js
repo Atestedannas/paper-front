@@ -246,6 +246,12 @@ const router = createRouter({
       meta: { requiresAuth: true, title: '格式检查' }
     },
     {
+      path: '/jobs/:jobId',
+      name: 'paper-job',
+      component: () => import('../views/PaperJobView.vue'),
+      meta: { requiresAuth: true, title: 'DOCX 闭环任务' }
+    },
+    {
       path: '/correction/:paperId',
       name: 'format-correction',
       component: FormatCorrectionView,

@@ -13,6 +13,29 @@ export const uploadPaper = (formData, onUploadProgress) => {
   })
 }
 
+export const runPaperJob = (jobId) => {
+  return request({
+    url: `/api/v2/jobs/${jobId}/run`,
+    method: 'POST',
+    timeout: 600000
+  })
+}
+
+export const getPaperJob = (jobId) => {
+  return request({
+    url: `/api/v2/jobs/${jobId}`,
+    method: 'GET'
+  })
+}
+
+export const downloadPaperJob = (jobId) => {
+  return request({
+    url: `/api/v2/jobs/${jobId}/download`,
+    method: 'GET',
+    responseType: 'blob'
+  })
+}
+
 export const getPapers = (params) => {
   return request({
     url: '/api/v1/papers',
